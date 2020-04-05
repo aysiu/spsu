@@ -14,7 +14,11 @@ Well, honestly, the use case for this is probably quite narrow. If you have a de
 Well, I've tested this on only macOS 10.15 (Catalina), so your mileage may vary for other versions of macOS.
 
 ### Permissions
-Also, since it requires Accessibility, you'll either have to manually drag the `/Library/Application\ Support/spsu/spsu.applescript` file and the `/usr/bin/osascript` binary to *System Preferences* > *Security & Privacy* > *Accessibility* (even then you'll still get prompts for access to System Events, which I don't think you can preemptively do through the GUI), or sign the `spsu.applescript` binary with your developer certificate and then use a PPPC profile to allow your UAMDM'ed Mac to have that codesigning info allowed for Accessibility and System Events (should work but haven't really tested this myself).
+#### Manually granted
+Also, since it requires Accessibility, you'll have to manually drag the `/Library/Application\ Support/spsu/spsu.applescript` file and the `/usr/bin/osascript` binary to *System Preferences* > *Security & Privacy* > *Accessibility* (even then you'll still get prompts for access to System Events, which I don't think you can preemptively do through the GUI in the Automation section).
+
+#### Granted via UAMDM and PPPC profile
+Another option would be to sign the `spsu.applescript` binary with your developer certificate and then use a PPPC profile to allow your UAMDM'ed Mac to have that codesigning info allowed for Accessibility and System Events (should work but haven't really tested this myself).
 
 ### Creating a .pkg
 This is set up to be made into a .pkg using [munkipkg](https://github.com/munki/munki-pkg)
