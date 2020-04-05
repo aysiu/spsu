@@ -1,0 +1,20 @@
+#!/bin/zsh
+
+# Launch Agent
+launchd="com.github.aysiu.spsu"
+launch_agent=/Library/LaunchAgents/"$launchd".plist
+
+# Get currently logged-in user
+current_user=$(/usr/bin/stat -f "%Su" /dev/console)
+
+# Only enable the LaunchAgent if there is a user logged in, otherwise rely on built in LaunchAgent behavior
+if [[ ! -z "$current_user" && "$current_user" != "loginwindow" && "$current_user" != "root" && "$current_user" != "_mbsetupuser" ]]; then
+    # See if it's running already
+    running_check=$(/usr/bin/su -l "$current_user" -c "/bin/launchctl list | /usr/bin/grep $launchd")
+    # If so, unload the launch agent first
+    if [[ ! -z "$running_check" ]]; then
+        /usr/bin/su -l "$current_user" -c "/bin/launchctl unload $launch_agent"
+    fi
+    # Load the launch agent
+    /usr/bin/su -l "$current_user" -c "/bin/launchctl load $launch_agent"
+fi
