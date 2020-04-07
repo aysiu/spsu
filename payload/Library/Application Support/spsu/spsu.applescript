@@ -9,7 +9,7 @@ tell application "System Preferences"
 end tell
 tell application "System Events"
 	-- Wait a few seconds, just in case there's a delay in the UI
-	delay 4
+	delay 15
 	-- Look for an update button
 	set update_now to a reference to (UI element "Update Now" of group 1 of window "Software Update" of application process "System Preferences")
 	-- If the update button exists, click it
