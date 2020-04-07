@@ -11,6 +11,9 @@ Well, honestly, the use case for this is probably quite narrow. If you have a de
 
 Note: I did some light testing, and it appears this _may_ even work on a FileVault-encrypted Mac. I haven't done extensive testing on this, though, so your mileage may vary a lot.
 
+## Why does the launch agent run this twice?
+Even when your Mac sees an update available, it doesn't necessarily download that update in the background, so clicking *Update Now* may present *Download & Restart* or present *Restart*. In theory, clicking *Download & Restart* prompts a *Restarting Your Computer: Your computer will restart in 60 seconds to install updates* banner notification with a countdown to an automated restart, but the second run will initiate the restart if that doesn't happen (or do nothing if it does).
+
 ## What are the pre-requisites for this?
 ### macOS version
 Well, I've tested this on only macOS 10.15 (Catalina), so your mileage may vary for other versions of macOS.
